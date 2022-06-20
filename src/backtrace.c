@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-FILE* output_file = 0;
+FILE* output_file_ = 0;
 
-#define bt_printf(...) fprintf(output_file,"[backtrace] " __VA_ARGS__)
+#define bt_printf(...) fprintf(output_file_,"[backtrace] " __VA_ARGS__)
 
 void bt_print_bactrace() {
 	const int traces_size = 100;
@@ -43,11 +43,11 @@ int bt_init_internal() {
 }
 
 int bt_init() {
-	output_file = stdout;
+	output_file_ = stdout;
 	return bt_init_internal();
 }
 
 void bt_set_output_file(FILE* output_file) {
-	output_file = output_file;
+	output_file_ = output_file;
 }
 
